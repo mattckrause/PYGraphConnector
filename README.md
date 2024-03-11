@@ -1,2 +1,3 @@
 # GraphConnector
-my custom graph connector
+Learning how to build/deploy a custome graph connector
+

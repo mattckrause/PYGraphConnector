@@ -9,7 +9,7 @@ async def main():
 
     # Load settings
     config = configparser.ConfigParser()
-    config.read(['config.cfg', 'config.dev.cfg'])
+    config.read(['config.cfg'])
     azure_settings = config['azure']
 
     graph: Graph = Graph(azure_settings)

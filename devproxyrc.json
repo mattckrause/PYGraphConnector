@@ -1,0 +1,18 @@
+﻿{
+	"$schema": "https://raw.githubusercontent.com/microsoft/dev-proxy/main/schemas/v0.19.0/rc.schema.json",
+	"plugins": [
+		{
+			"name": "CrudApiPlugin",
+			"enabled": true,
+			"pluginPath": "~appFolder/plugins/dev-proxy-plugins.dll",
+			"configSection": "objectsApi",
+			"urlsToWatch": [
+				"https://mkdemoapi.com/*",
+				"!https://login.microsoftonline.com/*"
+			]
+		}
+		],
+		"objectsApi": {
+		"apiFile": ".devproxy/objects-api.json"
+		}
+}

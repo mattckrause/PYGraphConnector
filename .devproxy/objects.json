@@ -1,0 +1,72 @@
+[
+    {
+        "ID": 1,
+        "Name": "Perfume Bottle",
+        "Description": "A vessel for holding scented fragrances. Often an artful combination of glass and design.",
+        "FunFact": "René Lalique, a French jeweler, revived interest in perfume bottles in the 1920s with his exquisite molded glass designs.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Perfume_bottle"
+    },
+    {
+        "ID": 2,
+        "Name": "Keychain",
+        "Description": "A small ring or chain to which keys are attached. Functional and customizable.",
+        "FunFact": "Keychains have evolved beyond utility and become collectibles and fashion accessories.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Keychain"
+    },
+    {
+        "ID": 3,
+        "Name": "LED",
+        "Description": "A semiconductor device that emits light when a voltage is applied. Energy-efficient and versatile.",
+        "FunFact": "LEDs have revolutionized lighting technology and are used in everything from traffic signals to TVs.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Light-emitting_diode"
+    },
+    {
+        "ID": 4,
+        "Name": "Clay Pot",
+        "Description": "A vessel made of baked clay, used for cooking, storing food, or as a decorative item.",
+        "FunFact": "Clay pots have been used for centuries across cultures for their heat-retaining properties.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Clay_pot_cooking"
+    },
+    {
+        "ID": 5,
+        "Name": "Picture Frame",
+        "Description": "A decorative border that holds and displays photographs or artwork.",
+        "FunFact": "The first picture frames were simple wooden structures, but over time, they became elaborate works of art.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Picture_frame"
+    },
+    {
+        "ID": 6,
+        "Name": "Rubber Duck",
+        "Description": "A small toy duck made of rubber or plastic, often used in baths.",
+        "FunFact": "The iconic yellow rubber duck has been a beloved bath companion since the late 19th century.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Rubber_duck"
+    },
+    {
+        "ID": 7,
+        "Name": "Toothpick",
+        "Description": "A small, pointed stick used for cleaning teeth or serving appetizers.",
+        "FunFact": "Toothpicks have been used for oral hygiene and food handling for centuries.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Toothpick"
+    },
+    {
+        "ID": 8,
+        "Name": "Umbrella",
+        "Description": "A portable canopy used to protect against rain or sun.",
+        "FunFact": "The first umbrellas were designed for sun protection and date back to ancient civilizations.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Umbrella"
+    },
+    {
+        "ID": 9,
+        "Name": "Sunglasses",
+        "Description": "Eyewear with tinted or polarized lenses to protect the eyes from sunlight.",
+        "FunFact": "Sunglasses were originally worn by Chinese judges in the 12th century to hide their expressions.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Sunglasses"
+    },
+    {
+        "ID": 10,
+        "Name": "Teapot",
+        "Description": "A vessel with a spout and handle, used for brewing and serving tea.",
+        "FunFact": "The teapot's design has evolved over centuries, influenced by different cultures and aesthetics.",
+        "WikipediaLink": "https://en.wikipedia.org/wiki/Teapot"
+    }
+]

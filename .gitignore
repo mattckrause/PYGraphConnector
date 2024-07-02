@@ -1,3 +1,2 @@
 ﻿*.cfg
 *.env
-**/__pycache__/

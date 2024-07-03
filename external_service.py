@@ -2,7 +2,8 @@
 import requests
 
 def extract_objects():
-	url = "http://localhost:3000/objects"
+	# url = "http://localhost:3000/objects"
+	url = "https://mkdemoapi.com/objects"
 
 	object_response = requests.get(url, verify=False)
 	json_content = object_response.json()

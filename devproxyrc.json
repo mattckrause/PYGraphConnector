@@ -7,8 +7,7 @@
 			"pluginPath": "~appFolder/plugins/dev-proxy-plugins.dll",
 			"configSection": "objectsApi",
 			"urlsToWatch": [
-				"https://mkdemoapi.com/*",
-				"!https://login.microsoftonline.com/*"
+				"https://mkdemoapi.com/*"
 			]
 		}
 		],

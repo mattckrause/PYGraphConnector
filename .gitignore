@@ -1,2 +1,4 @@
 ﻿*.cfg
 *.env
+venv
+__pycache__

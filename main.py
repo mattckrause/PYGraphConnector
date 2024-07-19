@@ -9,12 +9,14 @@ from external_service import extract_objects
 import urllib3
 urllib3.disable_warnings()
 
-id='MKObjectSearch5'
+id='MKObjectSearch3'
 name='Random Object Search'
 description='Random object search. Providing object description, a fun fact about the object, and a link to the wikipedia page for the object.'
 
+async def main() -> None:
+    await create_external_connection(id, name, description)
+    await create_schema(id)
+    #await write_objects(id, extract_objects())
 
-if __name__ == '__main__':
-    #asyncio.run(create_external_connection(id, name, description))
-    asyncio.run(create_schema(id))
-    #asyncio.run(write_objects(id, extract_objects()))
+if __name__ == "__main__":
+    asyncio.run(main())

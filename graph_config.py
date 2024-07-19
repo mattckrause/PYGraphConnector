@@ -25,15 +25,11 @@ async def create_external_connection(id: str, name: str, description: str) -> No
     )
 
     try:
-        gc_result = await graph_client.external.connections.post(body=external_connection)
-        print("connection created successfully. Connection Name:", gc_result)
-        asyncio.run(check_operation())
+        await graph_client.external.connections.post(body=external_connection)
+        print("External connection created successfully")
     except Exception as e:
         print(f"There was an error creating the connection: {e}")
         sys.exit(1)
-
-async def check_operation() -> None:
-    await asyncio.sleep(15)
 
 async def create_schema(id: str) -> None:
     schema = Schema(

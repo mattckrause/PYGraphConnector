@@ -68,12 +68,12 @@ async def create_schema(id: str) -> None:
         ]
     )
     print("creating schema...")
-    try:
-        await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
-        print('Schema created successfully')
-    except Exception as e:
-        print(f"There was an error in schema creation. Error: {e}")
-        sys.exit(1)
+    #try:
+    await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
+    print('Schema created successfully')
+    #except Exception as e:
+#        print(f"There was an error in schema creation. Error: {e}")
+#        sys.exit(1)
 
 async def write_objects(id: str, json_content) -> None:
     for obj in json_content:

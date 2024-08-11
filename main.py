@@ -1,5 +1,4 @@
 ﻿import asyncio
-import os
 from dotenv import load_dotenv, set_key
 from graph_config import create_external_connection, create_schema, write_objects
 from external_service import extract_objects
@@ -9,7 +8,7 @@ from external_service import extract_objects
 import urllib3
 urllib3.disable_warnings()
 
-id='MKObjectSearch9'
+id='MKObjectSearch10'
 name='Random Object Search'
 description='Random object search. Providing object description, a fun fact about the object, and a link to the wikipedia page for the object.'
 

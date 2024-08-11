@@ -72,7 +72,7 @@ async def create_schema(id: str) -> None:
         await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
         print('Schema created successfully')
     except Exception:
-        #print(traceback.format_exc())
+        print(traceback.format_exc())
         sys.exit(1)
 
 async def write_objects(id: str, json_content) -> None:

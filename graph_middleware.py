@@ -29,8 +29,9 @@ class GraphMiddleware(BaseMiddleware):
 
         response: httpx.Response = await super().send(request, transport)
         location = response.headers.get("Location")
+        print(f"location from header: {location}")
 
-        print("checking response location...")
+        print("checking response for location...")
         if location:
             if "/operations/" not in location:
                 print(f"/operations/ not in location: {response}")
@@ -43,22 +44,20 @@ class GraphMiddleware(BaseMiddleware):
             print(f"new request: {new_request}")
             return await self.send(new_request, transport)
 
-        print("checking response URL...")
-        print(f"type of request.url: {type(request.url)}")
         print(f"Request URL: {request.url}")
 
         if "/operations/" not in str(request.url):
             print("not a job")
             return response
 
-        print("line 54")
-
-        if response.is_success: #changed from not
-            print("response is success")
+        print("Checking response status code...")
+        if not response.is_success:
+            print("response is not success")
             return response
+        print("Response is success")
 
-        print("line 60")
-        body_bytes = response.read()
+        print("reading response body...")
+        body_bytes = await response.aread()
         print(f"Response body: {body_bytes}")
         parse_node = ParseNodeFactoryRegistry().get_root_parse_node("application/json", body_bytes)
         operation: ConnectionOperation = parse_node.get_object_value(ConnectionOperation.create_from_discriminator_value(parse_node))

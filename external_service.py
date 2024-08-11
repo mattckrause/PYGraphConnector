@@ -2,7 +2,8 @@
 from graph_client import graph_client
 
 async def extract_objects():
-    url = "https://mkdemoapi.com/objects"
+    #url = "https://mkdemoapi.com/objects"
+    url = "http://localhost:3000/objects"
     async with httpx.AsyncClient(verify=False) as client:
         object_response = await client.get(url)
     json_content = object_response.json()

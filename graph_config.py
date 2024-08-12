@@ -1,5 +1,5 @@
 ﻿import sys
-import asyncio
+import traceback
 from graph_client import graph_client
 from msgraph.generated.models.external_connectors.display_template import DisplayTemplate
 from msgraph.generated.models.external_connectors.external_connection import ExternalConnection
@@ -71,8 +71,8 @@ async def create_schema(id: str) -> None:
     try:
         await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
         print('Schema created successfully')
-    except Exception as e:
-        print(f"There was an error in schema creation. Error: {e}")
+    except Exception:
+        print(traceback.format_exc())
         sys.exit(1)
 
 async def write_objects(id: str, json_content) -> None:

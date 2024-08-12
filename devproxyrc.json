@@ -12,6 +12,6 @@
 		}
 		],
 		"objectsApi": {
-		"apiFile": ".devproxy/objects-api.json"
+		"apiFile": ".apimock/objects-api.json"
 		}
 }

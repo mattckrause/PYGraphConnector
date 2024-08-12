@@ -1,0 +1,92 @@
+{
+  "uuid": "a37e0200-85e9-4526-954c-397c8caea495",
+  "lastMigration": 32,
+  "name": "MockAPI",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "a2bd64e4-2039-4c75-892c-544f5621d921",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "objects",
+      "responses": [
+        {
+          "uuid": "fa57ef70-d9b3-4412-8915-7088ba108cd1",
+          "body": "[\r\n    {\r\n        \"ID\": 1,\r\n        \"Name\": \"Perfume Bottle\",\r\n        \"Description\": \"A vessel for holding scented fragrances. Often an artful combination of glass and design.\",\r\n        \"FunFact\": \"René Lalique, a French jeweler, revived interest in perfume bottles in the 1920s with his exquisite molded glass designs.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Perfume_bottle\"\r\n    },\r\n    {\r\n        \"ID\": 2,\r\n        \"Name\": \"Keychain\",\r\n        \"Description\": \"A small ring or chain to which keys are attached. Functional and customizable.\",\r\n        \"FunFact\": \"Keychains have evolved beyond utility and become collectibles and fashion accessories.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Keychain\"\r\n    },\r\n    {\r\n        \"ID\": 3,\r\n        \"Name\": \"LED\",\r\n        \"Description\": \"A semiconductor device that emits light when a voltage is applied. Energy-efficient and versatile.\",\r\n        \"FunFact\": \"LEDs have revolutionized lighting technology and are used in everything from traffic signals to TVs.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Light-emitting_diode\"\r\n    },\r\n    {\r\n        \"ID\": 4,\r\n        \"Name\": \"Clay Pot\",\r\n        \"Description\": \"A vessel made of baked clay, used for cooking, storing food, or as a decorative item.\",\r\n        \"FunFact\": \"Clay pots have been used for centuries across cultures for their heat-retaining properties.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Clay_pot_cooking\"\r\n    },\r\n    {\r\n        \"ID\": 5,\r\n        \"Name\": \"Picture Frame\",\r\n        \"Description\": \"A decorative border that holds and displays photographs or artwork.\",\r\n        \"FunFact\": \"The first picture frames were simple wooden structures, but over time, they became elaborate works of art.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Picture_frame\"\r\n    },\r\n    {\r\n        \"ID\": 6,\r\n        \"Name\": \"Rubber Duck\",\r\n        \"Description\": \"A small toy duck made of rubber or plastic, often used in baths.\",\r\n        \"FunFact\": \"The iconic yellow rubber duck has been a beloved bath companion since the late 19th century.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Rubber_duck\"\r\n    },\r\n    {\r\n        \"ID\": 7,\r\n        \"Name\": \"Toothpick\",\r\n        \"Description\": \"A small, pointed stick used for cleaning teeth or serving appetizers.\",\r\n        \"FunFact\": \"Toothpicks have been used for oral hygiene and food handling for centuries.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Toothpick\"\r\n    },\r\n    {\r\n        \"ID\": 8,\r\n        \"Name\": \"Umbrella\",\r\n        \"Description\": \"A portable canopy used to protect against rain or sun.\",\r\n        \"FunFact\": \"The first umbrellas were designed for sun protection and date back to ancient civilizations.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Umbrella\"\r\n    },\r\n    {\r\n        \"ID\": 9,\r\n        \"Name\": \"Sunglasses\",\r\n        \"Description\": \"Eyewear with tinted or polarized lenses to protect the eyes from sunlight.\",\r\n        \"FunFact\": \"Sunglasses were originally worn by Chinese judges in the 12th century to hide their expressions.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Sunglasses\"\r\n    },\r\n    {\r\n        \"ID\": 10,\r\n        \"Name\": \"Teapot\",\r\n        \"Description\": \"A vessel with a spout and handle, used for brewing and serving tea.\",\r\n        \"FunFact\": \"The teapot's design has evolved over centuries, influenced by different cultures and aesthetics.\",\r\n        \"WikipediaLink\": \"https://en.wikipedia.org/wiki/Teapot\"\r\n    }\r\n]\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "a2bd64e4-2039-4c75-892c-544f5621d921"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

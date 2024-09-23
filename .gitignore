@@ -1,5 +1,6 @@
 ﻿*.cfg
 *.env
+*.log
 venv
 myenv
 __pycache__

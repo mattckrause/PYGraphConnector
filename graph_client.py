@@ -12,8 +12,6 @@ from kiota_http.kiota_client_factory import (
     DEFAULT_REQUEST_TIMEOUT,
 )
 
-
-
 load_dotenv()
 
 credential = ClientSecretCredential(os.environ.get("_TENANTID"),

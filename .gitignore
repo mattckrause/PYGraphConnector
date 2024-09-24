@@ -1,6 +1,7 @@
 ﻿*.cfg
 *.env
 *.log
+test.py
 venv
 myenv
 __pycache__

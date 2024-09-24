@@ -12,7 +12,12 @@ from msgraph.generated.models.external_connectors.acl_type import AclType
 from msgraph.generated.models.external_connectors.external_item import ExternalItem
 from msgraph.generated.models.external_connectors.properties import Properties
 
-logging.basicConfig(filename='graphconnector.log')
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S',
+    filename='gc.log'
+)
 logger = logging.getLogger(__name__)
 
 async def create_external_connection(id: str, name: str, description: str) -> None:
@@ -31,6 +36,7 @@ async def create_external_connection(id: str, name: str, description: str) -> No
         sys.exit(1)
 
 async def create_schema(id: str) -> None:
+    print("Creating schema...")
     schema = Schema(
         base_type="microsoft.graph.externalItem",
         properties=[
@@ -54,8 +60,7 @@ async def create_schema(id: str) -> None:
             Property_(
                 name="FunFact",
                 type=PropertyType.String,
-                is_retrievable=True,
-                IsContent=True
+                is_retrievable=True
             ),
             Property_(
                 name="url",

@@ -2,18 +2,18 @@
 import os
 from dotenv import load_dotenv, set_key
 
-load_dotenv()
-# suppress warnings when working locally with Dev Proxy
+import logging
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.DEBUG,
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 async def main() -> None:
-    #add logic for first run vs subsequent runs
-    print(os.environ.get("_firstrun"))
-    if os.environ.get("_firstrun") == "true":
-        print("first run")
-        print("setting _firstrun to False")
-        set_key('.env', '_firstrun', "false")
-    else:
-        print("subsequent run")
+    logging.info('This is an info message')
+    logging.debug('This is a debug message')
+    logging.error('This is an error message')
 
 if __name__ == "__main__":
     asyncio.run(main())

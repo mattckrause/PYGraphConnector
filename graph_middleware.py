@@ -7,7 +7,12 @@ from kiota_abstractions.serialization.parse_node_factory_registry import ParseNo
 from msgraph.generated.models.external_connectors.connection_operation import ConnectionOperation
 from msgraph.generated.models.external_connectors.connection_operation_status import ConnectionOperationStatus
 
-logging.basicConfig(filename='graphconnector.log')
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S',
+    filename='gc.log'
+)
 logger = logging.getLogger(__name__)
 
 class GraphMiddleware(BaseMiddleware):

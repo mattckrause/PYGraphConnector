@@ -11,29 +11,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-@app.route('/auth/consent')
-def auth_consent():
-    code = request.args.get('code')
-    if code:
-        logger.info(f"Authorization code received: {code}")
-        # Here you can exchange the authorization code for an access token
-        # For example, you might call a function like exchange_code_for_token(code)
-        return "Authorization code received. You can close this window."
-    else:
-        logger.error("No authorization code found in the request.")
-        return "Consent successful. You can close this window."
-
 @app.route('/auth/callback')
 def auth_callback():
-    code = request.args.get('code')
-    if code:
-        logger.info(f"Authorization code received: {code}")
-        # Here you can exchange the authorization code for an access token
-        # For example, you might call a function like exchange_code_for_token(code)
-        return "Authorization code received. You can close this window."
-    else:
-        logger.error("No authorization code found in the request.")
-        return "Error: No authorization code found in the request."
+    logger.info("Admin consent was received.")
+    return "Admin consent successful. You can close this window."
 
 if __name__ == '__main__':
     app.run(port=5000)

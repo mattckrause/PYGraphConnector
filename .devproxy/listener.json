@@ -1,0 +1,125 @@
+{
+  "uuid": "02dddc0c-a6a6-453f-ba02-b7a5080549e9",
+  "lastMigration": 32,
+  "name": "Listener",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 5000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "7a985dba-02e6-45b9-b4c3-c3797cd38a44",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "",
+      "responses": [
+        {
+          "uuid": "a64aa5c8-ec61-4476-8493-e164a14a543e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4f8bb576-9f4b-4f25-921c-298f9cd0a9b2",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "auth/callback/",
+      "responses": [
+        {
+          "uuid": "7a554ba6-182e-486d-972e-ec82340e376c",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "7a985dba-02e6-45b9-b4c3-c3797cd38a44"
+    },
+    {
+      "type": "route",
+      "uuid": "4f8bb576-9f4b-4f25-921c-298f9cd0a9b2"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

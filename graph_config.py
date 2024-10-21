@@ -55,7 +55,7 @@ async def create_schema(id: str) -> None:
                 type=PropertyType.String,
                 is_queryable=True,
                 is_searchable=True,
-                is_retrievable=True
+                is_retrievable=True,
             ),
             Property_(
                 name="FunFact",

@@ -14,7 +14,13 @@ logger = logging.getLogger(__name__)
 @app.route('/auth/callback')
 def auth_callback():
     logger.info("Admin consent was received.")
-    return "Admin consent successful. You can close this window."
+    tenant = request.args.get('tenant')
+
+    if request.args.get('admin_consent') == 'true':
+        return "Admin consent was received. You can close this window."
+    else:
+        return "Error: Admin consent was not received. Please try again."
+
 
 if __name__ == '__main__':
     app.run(port=5000)

@@ -12,30 +12,37 @@ from kiota_http.kiota_client_factory import (
     DEFAULT_REQUEST_TIMEOUT,
 )
 
+class CreateClient:
+    @staticmethod
+    async def create_with_client_Secret() -> GraphServiceClient:
+        print("Creating client with client secret")
+        load_dotenv()
+
+        credential = ClientSecretCredential(os.environ.get("_TENANTID"),
+                                            os.environ.get("_APPID"),
+                                            os.environ.get("_CLIENTKEY"),
+                                            connection_verify=False)
+        scopes = ['https://graph.microsoft.com/.default']
+        auth_provider = AzureIdentityAuthenticationProvider(credential)
+        timeout = Timeout(DEFAULT_REQUEST_TIMEOUT, connect=DEFAULT_CONNECTION_TIMEOUT)
+        http_client = AsyncClient(timeout=timeout, http2=True)
+
+        middleware = GraphClientFactory.get_default_middleware(None)
+
+        middleware.insert(0, GraphMiddleware(60000))
+
+        http_client = GraphClientFactory.create_with_custom_middleware(
+            middleware, client=http_client
+        )
+        adapter = GraphRequestAdapter(auth_provider, http_client)
+
+        graph_client = GraphServiceClient(
+            credential,
+            scopes=scopes,
+            request_adapter=adapter,
+            )
+        return graph_client
 
 
-load_dotenv()
-
-credential = ClientSecretCredential(os.environ.get("_TENANTID"),
-                                    os.environ.get("_APPID"),
-                                    os.environ.get("_CLIENTKEY"),
-                                    connection_verify=False)
-scopes = ['https://graph.microsoft.com/.default']
-auth_provider = AzureIdentityAuthenticationProvider(credential)
-timeout = Timeout(DEFAULT_REQUEST_TIMEOUT, connect=DEFAULT_CONNECTION_TIMEOUT)
-http_client = AsyncClient(timeout=timeout, http2=True)
-
-middleware = GraphClientFactory.get_default_middleware(None)
-
-middleware.insert(0, GraphMiddleware(60000))
-
-http_client = GraphClientFactory.create_with_custom_middleware(
-    middleware, client=http_client
-)
-adapter = GraphRequestAdapter(auth_provider, http_client)
-
-graph_client = GraphServiceClient(
-    credential,
-    scopes=scopes,
-    request_adapter=adapter,
-)
+if __name__ == "__main__":
+    CreateClient.create_with_client_Secret()

@@ -1,6 +1,7 @@
 ﻿import sys
 import traceback
-from graph_client import graph_client
+#from graph_client import graph_client
+from graph_client import CreateClient
 from msgraph.generated.models.external_connectors.display_template import DisplayTemplate
 from msgraph.generated.models.external_connectors.external_connection import ExternalConnection
 from msgraph.generated.models.external_connectors.search_settings import SearchSettings
@@ -25,6 +26,8 @@ async def create_external_connection(id: str, name: str, description: str) -> No
     )
 
     try:
+        print("calling graph client creation process...")
+        graph_client = await CreateClient.create_with_client_Secret()
         await graph_client.external.connections.post(body=external_connection)
         print("External connection created successfully")
     except Exception as e:
@@ -69,6 +72,7 @@ async def create_schema(id: str) -> None:
     )
     print("creating schema...")
     try:
+        graph_client = await CreateClient.create_with_client_Secret()
         await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
         print('Schema created successfully')
     except Exception:
@@ -97,6 +101,7 @@ async def write_objects(id: str, json_content) -> None:
             ]
         )
         try:
+            graph_client = await CreateClient.create_with_client_Secret()
             await graph_client.external.connections.by_external_connection_id(id).items.by_external_item_id(object_body.id).put(object_body)
             print("Object created successfully...")
         except Exception as e:

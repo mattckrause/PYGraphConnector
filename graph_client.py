@@ -1,5 +1,5 @@
 ﻿import os
-from dotenv import load_dotenv
+from AZCreds import get_secrets
 from azure.identity import ClientSecretCredential
 from msgraph import GraphServiceClient, GraphServiceClient, GraphRequestAdapter
 from msgraph_core import GraphClientFactory
@@ -16,11 +16,11 @@ class CreateClient:
     @staticmethod
     async def create_with_client_Secret() -> GraphServiceClient:
         print("Creating client with client secret")
-        load_dotenv()
+        appID, clientSec, tenantID = get_secrets()
 
-        credential = ClientSecretCredential(os.environ.get("_TENANTID"),
-                                            os.environ.get("_APPID"),
-                                            os.environ.get("_CLIENTKEY"),
+        credential = ClientSecretCredential(tenantID,
+                                            appID,
+                                            clientSec,
                                             connection_verify=False)
         scopes = ['https://graph.microsoft.com/.default']
         auth_provider = AzureIdentityAuthenticationProvider(credential)

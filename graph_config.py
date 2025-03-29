@@ -1,6 +1,6 @@
 ﻿import sys
 import traceback
-#from graph_client import graph_client
+from AZCreds import get_secrets
 from graph_client import CreateClient
 from msgraph.generated.models.external_connectors.display_template import DisplayTemplate
 from msgraph.generated.models.external_connectors.external_connection import ExternalConnection
@@ -17,8 +17,9 @@ from msgraph.generated.models.external_connectors.properties import Properties
 from msgraph.generated.models.external_connectors.connection_operation import ConnectionOperation
 from msgraph.generated.models.external_connectors.connection_operation_status import ConnectionOperationStatus
 
-async def create_external_connection(id: str, name: str, description: str) -> None:
+async def create_external_connection(id: str, name: str, description: str, tenantID: str) -> None:
     print("Creating external connection")
+    graph_client = await CreateClient.create_with_client_Secret(tenantID)
     external_connection = ExternalConnection(
         id=id,
         name=name,
@@ -27,14 +28,14 @@ async def create_external_connection(id: str, name: str, description: str) -> No
 
     try:
         print("calling graph client creation process...")
-        graph_client = await CreateClient.create_with_client_Secret()
         await graph_client.external.connections.post(body=external_connection)
         print("External connection created successfully")
     except Exception as e:
         print(f"There was an error creating the connection: {e}")
         sys.exit(1)
 
-async def create_schema(id: str) -> None:
+async def create_schema(id: str, tenantID: str) -> None:
+    graph_client = await CreateClient.create_with_client_Secret(tenantID)
     schema = Schema(
         base_type="microsoft.graph.externalItem",
         properties=[
@@ -72,14 +73,14 @@ async def create_schema(id: str) -> None:
     )
     print("creating schema...")
     try:
-        graph_client = await CreateClient.create_with_client_Secret()
         await graph_client.external.connections.by_external_connection_id(id).schema.patch(schema)
         print('Schema created successfully')
     except Exception:
         print(traceback.format_exc())
         sys.exit(1)
 
-async def write_objects(id: str, json_content) -> None:
+async def write_objects(id: str, json_content, tenantID: str) -> None:
+    graph_client = await CreateClient.create_with_client_Secret(tenantID)
     for obj in json_content:
         print("creating object: ",obj["Name"])
         object_body = ExternalItem(
@@ -101,7 +102,6 @@ async def write_objects(id: str, json_content) -> None:
             ]
         )
         try:
-            graph_client = await CreateClient.create_with_client_Secret()
             await graph_client.external.connections.by_external_connection_id(id).items.by_external_item_id(object_body.id).put(object_body)
             print("Object created successfully...")
         except Exception as e:

@@ -14,9 +14,9 @@ from kiota_http.kiota_client_factory import (
 
 class CreateClient:
     @staticmethod
-    async def create_with_client_Secret() -> GraphServiceClient:
+    async def create_with_client_Secret(tenantID) -> GraphServiceClient:
         print("Creating client with client secret")
-        appID, clientSec, tenantID = get_secrets()
+        appID, clientSec = get_secrets()
 
         credential = ClientSecretCredential(tenantID,
                                             appID,

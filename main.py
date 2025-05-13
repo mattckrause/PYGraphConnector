@@ -7,7 +7,7 @@ from external_service import extract_objects
 import urllib3
 urllib3.disable_warnings()
 
-id='MKObjectSearch02'
+id='MKObjectSearch2'
 name='Random Object Search'
 description='Random object search. Providing object description, a fun fact about the object, and a link to the wikipedia page for the object.'
 tenantID='7b2828b9-89a3-4507-9e1a-05ff46d1192d' #<-- my tenant

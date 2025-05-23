@@ -1,6 +1,7 @@
 ﻿import sys
 import traceback
 from AZCreds import get_secrets
+from external_service import user_mapping
 from graph_client import CreateClient
 from msgraph.generated.models.external_connectors.display_template import DisplayTemplate
 from msgraph.generated.models.external_connectors.external_connection import ExternalConnection
@@ -17,9 +18,8 @@ from msgraph.generated.models.external_connectors.properties import Properties
 from msgraph.generated.models.external_connectors.connection_operation import ConnectionOperation
 from msgraph.generated.models.external_connectors.connection_operation_status import ConnectionOperationStatus
 
-async def create_external_connection(id: str, name: str, description: str, tenantID: str) -> None:
+async def create_external_connection(id: str, name: str, description: str, tenantID: str, graph_client) -> None:
     print("Creating external connection")
-    graph_client = await CreateClient.create_with_client_Secret(tenantID)
     external_connection = ExternalConnection(
         id=id,
         name=name,
@@ -34,8 +34,7 @@ async def create_external_connection(id: str, name: str, description: str, tenan
         print(f"There was an error creating the connection: {e}")
         sys.exit(1)
 
-async def create_schema(id: str, tenantID: str) -> None:
-    graph_client = await CreateClient.create_with_client_Secret(tenantID)
+async def create_schema(id: str, graph_client) -> None:
     schema = Schema(
         base_type="microsoft.graph.externalItem",
         properties=[
@@ -79,10 +78,10 @@ async def create_schema(id: str, tenantID: str) -> None:
         print(traceback.format_exc())
         sys.exit(1)
 
-async def write_objects(id: str, json_content, tenantID: str) -> None:
-    graph_client = await CreateClient.create_with_client_Secret(tenantID)
+async def write_objects(id: str, json_content, graph_client) -> None:
     for obj in json_content:
         print("creating object: ",obj["Name"])
+        acl_list = await user_mapping(obj["Users"], graph_client)
         object_body = ExternalItem(
             id=obj["ID"],
             properties=Properties(
@@ -93,16 +92,11 @@ async def write_objects(id: str, json_content, tenantID: str) -> None:
                     "URL": obj["WikipediaLink"]
                 }
             ),
-            acl=[
-                Acl(
-                    type=AclType.Everyone,
-                    value="everyone",
-                    access_type=AccessType.Grant
-                )
-            ]
+            acl=acl_list
         )
         try:
             await graph_client.external.connections.by_external_connection_id(id).items.by_external_item_id(object_body.id).put(object_body)
+            print(object_body)
             print("Object created successfully...")
         except Exception as e:
             print(f'error on, {obj["Name"]}: {e}')

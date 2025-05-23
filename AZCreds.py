@@ -12,6 +12,5 @@ def get_secrets():
     clientSec = client.get_secret("clientSecret")
     return appID.value, clientSec.value
 
-
 if __name__ == "__main__":
     get_secrets()

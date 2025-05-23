@@ -1,22 +1,14 @@
 ﻿import sys
 import traceback
-from AZCreds import get_secrets
 from external_service import user_mapping
-from graph_client import CreateClient
-from msgraph.generated.models.external_connectors.display_template import DisplayTemplate
 from msgraph.generated.models.external_connectors.external_connection import ExternalConnection
-from msgraph.generated.models.external_connectors.search_settings import SearchSettings
 from msgraph.generated.models.external_connectors.schema import Schema
 from msgraph.generated.models.external_connectors.property_ import Property_
 from msgraph.generated.models.external_connectors.property_type import PropertyType
 from msgraph.generated.models.external_connectors.label import Label
-from msgraph.generated.models.external_connectors.access_type import AccessType
-from msgraph.generated.models.external_connectors.acl import Acl
-from msgraph.generated.models.external_connectors.acl_type import AclType
 from msgraph.generated.models.external_connectors.external_item import ExternalItem
 from msgraph.generated.models.external_connectors.properties import Properties
-from msgraph.generated.models.external_connectors.connection_operation import ConnectionOperation
-from msgraph.generated.models.external_connectors.connection_operation_status import ConnectionOperationStatus
+
 
 async def create_external_connection(id: str, name: str, description: str, tenantID: str, graph_client) -> None:
     print("Creating external connection")
@@ -96,7 +88,6 @@ async def write_objects(id: str, json_content, graph_client) -> None:
         )
         try:
             await graph_client.external.connections.by_external_connection_id(id).items.by_external_item_id(object_body.id).put(object_body)
-            print(object_body)
             print("Object created successfully...")
         except Exception as e:
             print(f'error on, {obj["Name"]}: {e}')

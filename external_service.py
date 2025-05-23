@@ -1,6 +1,5 @@
 ﻿import httpx
 import re
-from graph_client import CreateClient
 from msgraph.generated.models.external_connectors.acl import Acl
 from msgraph.generated.models.external_connectors.acl_type import AclType
 from msgraph.generated.models.external_connectors.access_type import AccessType

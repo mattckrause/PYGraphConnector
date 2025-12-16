@@ -5,6 +5,9 @@ from msgraph.generated.models.external_connectors.external_connection import Ext
 from msgraph.generated.models.external_connectors.schema import Schema
 from msgraph.generated.models.external_connectors.property_ import Property_
 from msgraph.generated.models.external_connectors.property_type import PropertyType
+from msgraph.generated.models.external_connectors.access_type import AccessType
+from msgraph.generated.models.external_connectors.acl import Acl
+from msgraph.generated.models.external_connectors.acl_type import AclType
 from msgraph.generated.models.external_connectors.label import Label
 from msgraph.generated.models.external_connectors.external_item import ExternalItem
 from msgraph.generated.models.external_connectors.properties import Properties
@@ -24,6 +27,15 @@ async def create_external_connection(id: str, name: str, description: str, tenan
         print("External connection created successfully")
     except Exception as e:
         print(f"There was an error creating the connection: {e}")
+        sys.exit(1)
+
+async def remove_external_connection(id: str, graph_client) -> None:
+    print("Removing external connection")
+    try:
+        await graph_client.external.connections.by_external_connection_id(id).delete()
+        print("External connection removed successfully")
+    except Exception as e:
+        print(f"There was an error removing the connection: {e}")
         sys.exit(1)
 
 async def create_schema(id: str, graph_client) -> None:
@@ -71,9 +83,9 @@ async def create_schema(id: str, graph_client) -> None:
         sys.exit(1)
 
 async def write_objects(id: str, json_content, graph_client) -> None:
+    print("graph_config - Writing objects...")
     for obj in json_content:
-        print("creating object: ",obj["Name"])
-        acl_list = await user_mapping(obj["Users"], graph_client)
+        print(f"graph_config - Creating object: {obj['Name']}")
         object_body = ExternalItem(
             id=obj["ID"],
             properties=Properties(
@@ -81,13 +93,20 @@ async def write_objects(id: str, json_content, graph_client) -> None:
                     "Name": obj["Name"],
                     "Description": obj["Description"],
                     "FunFact": obj["FunFact"],
-                    "URL": obj["WikipediaLink"]
+                    "URL": obj["WikipediaLink"],
+                    "Icon": "https://gcfileserv.blob.core.windows.net/image/MKlogo.png"
                 }
             ),
-            acl=acl_list
+            acl=[
+                Acl(
+                    type=AclType.Everyone,
+                    value="everyone",
+                    access_type=AccessType.Grant
+                )
+            ]
         )
         try:
             await graph_client.external.connections.by_external_connection_id(id).items.by_external_item_id(object_body.id).put(object_body)
-            print("Object created successfully...")
+            print("graph_config - Object created successfully...")
         except Exception as e:
-            print(f'error on, {obj["Name"]}: {e}')
+            print(f"graph_config - Error on {obj['Name']}: {e}")
